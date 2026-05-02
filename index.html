@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ถึงคุณแยม..✍️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-pink: #FF85A1;
+            --bg-gradient: linear-gradient(180deg, #E0C3FC 0%, #FBC2EB 100%);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: var(--bg-gradient);
+            font-family: 'Kanit', sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section { display: none; animation: fadeIn 0.8s ease forwards; }
+        .active { display: block; }
+
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(20px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+
+        /* --- Envelope Style --- */
+        .envelope-wrapper { 
+            cursor: pointer; 
+            position: relative; 
+            width: 250px; 
+            height: 180px; 
+            background: white; 
+            margin: 0 auto; 
+            border-radius: 0 0 10px 10px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
+        }
+        
+        .envelope-wrapper::before { 
+            content: ""; 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            z-index: 2; 
+            border-top: 100px solid #f8bbd0; 
+            border-left: 125px solid transparent; 
+            border-right: 125px solid transparent; 
+            transform-origin: top; 
+            transition: 0.5s; 
+        }
+        
+        .open::before { transform: rotateX(180deg); z-index: 0; }
+        .heart { position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); font-size: 40px; z-index: 3; transition: 0.3s; }
+        .open .heart { opacity: 0; }
+
+        .card { 
+            background: rgba(255, 255, 255, 0.95); 
+            padding: 30px; 
+            border-radius: 30px; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1); 
+        }
+        
+        /* แก้ไขตรงนี้เพื่อให้รูปแสดงผลได้ดีขึ้น */
+        .gif-img { 
+            width: 100%; 
+            max-width: 200px; 
+            height: auto;
+            border-radius: 20px; 
+            margin-bottom: 20px; 
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        button { padding: 12px 25px; border: none; border-radius: 25px; cursor: pointer; font-family: 'Kanit'; font-weight: 500; transition: 0.3s; }
+        .btn-next { background: var(--primary-pink); color: white; width: 100%; margin-top: 20px; font-size: 16px; }
+        .btn-ok { background: #FF85A1; color: white; }
+        .btn-no { background: #eee; color: #888; }
+        .btn-ans { background: #8e44ad; color: white; width: 100%; margin-top: 15px; }
+
+        .long-text { 
+            text-align: left; 
+            line-height: 1.7; 
+            color: #555; 
+            font-size: 14.5px; 
+            white-space: pre-line;
+            background: #fffafa;
+            padding: 15px;
+            border-radius: 15px;
+            border: 1px dashed #f8bbd0;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            border-radius: 15px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            font-family: 'Kanit';
+            margin-top: 15px;
+            box-sizing: border-box;
+            resize: none;
+        }
+
+        h2, h3 { color: #D63384; margin-top: 0; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <div id="step1" class="section active">
+        <div class="envelope-wrapper" id="env" onclick="handleEnvelope()">
+            <div class="heart">❤️</div>
+        </div>
+        <p style="margin-top:20px; color:white; font-weight: 300;">มีจดหมายจากแม็กมาส่งให้แยมครับ</p>
+    </div>
+
+    <div id="step3" class="section">
+        <div class="card">
+            <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueGZ3bmR6eXp6Znd6Znd6Znd6Znd6Znd6Znd6Znd6Znd6JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/v6aOebdSI89oxeJL8r/giphy.gif" class="gif-img">
+            <h2>แม็กมาง้อครับ 🥺</h2>
+            <div style="display: flex; justify-content: center; gap: 15px;">
+                <button class="btn-ok" onclick="nextStep(4)">OK (ดีกันนะแยม)</button>
+                <button class="btn-no" id="noBtn" onmouseover="moveBtn()">ยังโกรธอยู่!</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="step4" class="section">
+        <div class="card">
+            <h3>ถีงคูณแยม..✍️</h3>
+            <div class="long-text">
+                แม็กขอโทษที่ทำตัวไม่น่ารักจนทำให้แยมต้องโกรธและเสียใจขนาดนี้นะครับ
+                
+                แม็กยอมรับว่าแม็กงี่เง่าและทำอะไรไม่ทันคิดให้รอบคอบก่อนจริงๆ แต่แม็กอยากให้แยมรู้ไว้นะว่า แยมคือคนสำคัญที่สุดในชีวิตแม็กเลย
+                
+                พอไม่มีแยมอยู่ข้างๆ แม็กรู้สึกว่าชีวิตมันขาดอะไรไปจนบอกไม่ถูก แม็กคิดถึงแยมนะ อยากขอโทษแยมเป็นพันเป็นล้านครั้งเลย 
+                
+                แม็กสัญญาจากใจเลยว่าจะไม่มีครั้งหน้าแน่นอน
+                ให้โอกาสแม็กแก้ตัวอีกสักครั้งนะครับ
+            </div>
+            <button class="btn-next" onclick="nextStep(5)">NEXT (แม็กขอโทษนะแยม)</button>
+        </div>
+    </div>
+
+    <div id="step5" class="section">
+        <div class="card">
+            <!-- อัปเดตลิงก์รูปภาพใหม่เป็นรูปน้องหมาถือดอกไม้ -->
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExczM4YXZlNWd4ZW12NWRhMnphM21kcm5oN3Bybm1oN3Bybm1oN3ByJmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/56mN0Xh0Z9JSM/giphy.gif" class="gif-img">
+            <h2 style="color: #FF5C8A;">ขอบคุณที่เปิดดูนะแยม</h2>
+            <p style="font-size: 14px; color: #777;">(แม็กตั้งใจทำจริงๆนะ รักแยมที่สุดเลย ❤️)</p>
+            
+            <textarea id="yamAnswer" placeholder="แยมพิมพ์บอกแม็กตรงนี้ได้เลยนะ..."></textarea>
+            <button id="submitBtn" class="btn-ans" onclick="sendToSheet()">ส่งคำตอบให้แม็ก ❤️</button>
+            <p id="status" style="margin-top: 15px; font-size: 14px; color: #4CAF50; display: none; font-weight: 500;">ส่งถึงแม็กแล้วครับ! รักแยมที่สุดในโลกเลย 💖</p>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbws7Uxak8TJ22IOq7xlXUtb1SnhkbrXRJrWRt13k2Lj2naFKXS4X34HxVf4yad1eo1NKQ/exec';
+
+    function handleEnvelope() {
+        const env = document.getElementById('env');
+        env.classList.add('open');
+        setTimeout(() => { nextStep(3); }, 1200);
+    }
+
+    function nextStep(stepNum) {
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        document.getElementById('step' + stepNum).classList.add('active');
+    }
+
+    function moveBtn() {
+        const btn = document.getElementById('noBtn');
+        const x = Math.random() * (window.innerWidth - 100);
+        const y = Math.random() * (window.innerHeight - 50);
+        btn.style.position = 'fixed';
+        btn.style.left = x + 'px';
+        btn.style.top = y + 'px';
+    }
+
+    function sendToSheet() {
+        const btn = document.getElementById('submitBtn');
+        const status = document.getElementById('status');
+        const answer = document.getElementById('yamAnswer').value;
+
+        if(!answer) return alert('แยมพิมพ์บอกแม็กหน่อยน้าา 🥺');
+
+        btn.innerText = 'กำลังส่งความรู้สึก...';
+        btn.disabled = true;
+
+        fetch(scriptURL, {
+            method: 'POST',
+            mode: 'no-cors',
+            cache: 'no-cache',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ answer: answer })
+        }).then(() => {
+            btn.style.display = 'none';
+            document.getElementById('yamAnswer').style.display = 'none';
+            status.style.display = 'block';
+        }).catch(error => {
+            console.error('Error!', error.message);
+            btn.innerText = 'ลองอีกครั้งนะ';
+            btn.disabled = false;
+        });
+    }
+</script>
+
+</body>
+</html>
